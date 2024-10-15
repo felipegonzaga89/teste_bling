@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-t_t)*%g(n&9un!qc1flpy3!mrm_zn7gu4$iqz-p_j_5!lnb=t9
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    'localhost',
     'teste-bling.onrender.com',
 ]
 
@@ -39,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    
+    'core',
 ]
 
 MIDDLEWARE = [
