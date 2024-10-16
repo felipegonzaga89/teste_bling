@@ -29,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     'teste-bling.onrender.com',
-    '137.184.149.231',
+    '204.48.18.219',
 ]
 
 
