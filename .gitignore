@@ -31,3 +31,6 @@ parcel-cache
 .env
 db.*.Identifier
 cotacoes_dolar
+
+__pycache__
+
