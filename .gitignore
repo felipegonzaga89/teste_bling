@@ -1,0 +1,33 @@
+# Não manda os bancos
+db.sqlite3
+
+# Não manda os arquivos cache do Python
+*pyc
+
+# Não manda o ambiente virtual
+env*
+.venv*
+
+# Não manda configuração do pyenv
+.python-version
+
+# Não manda configuração do vscode
+.vscode
+.mypy_cache
+.parcel-cache
+
+# Não manda pasta com dados do postman
+*postman*
+
+#Não manda pasta Node Modules
+node_modules
+media
+static
+
+*.log
+
+.parcel-cache
+parcel-cache
+.env
+db.*.Identifier
+cotacoes_dolar
