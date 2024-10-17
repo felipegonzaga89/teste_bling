@@ -7,6 +7,7 @@ class RequisicoesRecebidas(models.Model):
     
     body = models.TextField(
         verbose_name='Body',
+        blank=True, null=True,
     )
     
     data = models.JSONField(
