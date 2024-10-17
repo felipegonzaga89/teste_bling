@@ -5,8 +5,8 @@ from django.db import models
 
 class RequisicoesRecebidas(models.Model):
     
-    body = models.TextField(
-        verbose_name='Body',
+    retorno = models.TextField(
+        verbose_name='retorno',
         blank=True, null=True,
     )
     
