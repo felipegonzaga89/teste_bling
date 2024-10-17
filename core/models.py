@@ -5,12 +5,9 @@ from django.db import models
 
 class RequisicoesRecebidas(models.Model):
     
-    retorno = models.TextField(
-        verbose_name='retorno',
+    retorno = models.JSONField(
+        verbose_name='Retorno',
         blank=True, null=True,
     )
     
-    data = models.JSONField(
-        verbose_name='Data',
-        blank=True, null=True,
-    )
+   
