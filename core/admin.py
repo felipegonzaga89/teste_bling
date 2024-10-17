@@ -5,4 +5,4 @@ from core.models import RequisicoesRecebidas
 @admin.register(RequisicoesRecebidas)
 class RequisicoesRecebidasAdmin(admin.ModelAdmin):
     
-    list_display = ['id']
+    list_display = ['id', 'body']
