@@ -15,12 +15,17 @@ def requisicoes_post_save(sender, instance, created, **kwargs):
         descricao = dados['retorno']['estoques'][0]['estoque']['nome']
         saldo = dados['retorno']['estoques'][0]['estoque']['estoqueAtual']
         
-        Consulta.objects.create(
+        # Verifica se já existe uma consulta com o depósito e SKU informados
+        consulta, created = Consulta.objects.get_or_create(
             deposito=deposito,
             sku=sku,
-            descricao=descricao,
-            saldo=saldo,
+            defaults={'descricao': descricao, 'saldo': saldo}
         )
+
+        # Se a consulta já existia, atualiza o saldo
+        if not created:
+            consulta.saldo = saldo
+            consulta.save()
         
         print(f'Novo objeto criado: {instance}')
     

@@ -1,0 +1,16 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+  <h1>Importar Dados CSV</h1>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="deposito">Selecionar Depósito:</label>
+    <select name="deposito" id="deposito" required>
+      {% for deposito in depositos %}
+        <option value="{{ deposito.deposito }}">{{ deposito.deposito }}</option>  <!-- Ajuste conforme necessário -->
+      {% endfor %}
+    </select>
+    <input type="file" name="csv_file" required>
+    <button type="submit">Importar</button>
+  </form>
+{% endblock %}
