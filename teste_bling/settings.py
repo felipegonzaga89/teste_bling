@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     
     
     'core',
+    'depositos',
 ]
 
 MIDDLEWARE = [

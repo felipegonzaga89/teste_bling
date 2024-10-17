@@ -1,8 +1,9 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from core.models import *
 from .serializers import RequisicoesRecebidasSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
+from rest_framework.response import Response
 
 
 class RequisicoesRecebidasViewSet(viewsets.ModelViewSet):
@@ -28,7 +29,7 @@ class RequisicoesRecebidasViewSet(viewsets.ModelViewSet):
         # self.perform_create(serializer)
 
         # Retorna a resposta com os dados criados
-        return #Response(serializer.data, status=status.HTTP_201_CREATED)    
+        return Response(status=status.HTTP_201_CREATED)    
 
 
 
