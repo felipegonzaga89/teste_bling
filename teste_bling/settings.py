@@ -30,6 +30,8 @@ ALLOWED_HOSTS = [
     'localhost',
     'teste-bling.onrender.com',
     '204.48.18.219',
+    '204.48.18.219',
+    '127.0.0.1',
 ]
 
 
