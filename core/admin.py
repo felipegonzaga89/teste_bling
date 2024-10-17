@@ -6,3 +6,5 @@ from core.models import RequisicoesRecebidas
 class RequisicoesRecebidasAdmin(admin.ModelAdmin):
     
     list_display = ['id', 'retorno']
+    
+    readonly_fields = ['data_criacao']

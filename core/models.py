@@ -10,4 +10,11 @@ class RequisicoesRecebidas(models.Model):
         blank=True, null=True,
     )
     
+    data_criacao = models.DateTimeField(
+        verbose_name='Data de Criação',
+        auto_now_add=True,
+        blank=True,
+        null=True,
+    )
+
    
