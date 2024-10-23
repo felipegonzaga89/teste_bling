@@ -5,6 +5,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 import csv
 import io
+from django.urls import reverse
+
 
 
 # Register your models here.
@@ -52,7 +54,8 @@ class ConsultaAdmin(DjangoObjectActions, admin.ModelAdmin):
                     consulta.saldo = saldo
                     consulta.save()
             self.message_user(request, "Dados importados com sucesso.")
-            return HttpResponseRedirect(request.path_info)
+            return HttpResponseRedirect(reverse('admin:depositos_consulta_changelist'))
+        
         
         
         depositos = Consulta.objects.values('deposito').distinct()  # Filtra depósitos únicos
