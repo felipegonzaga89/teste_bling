@@ -1,5 +1,6 @@
 asgiref==3.8.1
-# Django==5.1.2
+Django==5.1.2
+django-app-novadata==0.1.1
 django-cors-headers==4.5.0
 django-object-actions==4.3.0
 djangorestframework==3.15.2

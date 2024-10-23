@@ -8,19 +8,36 @@ import json
 @receiver(post_save, sender=RequisicoesRecebidas)  # Substitua MyModel pelo seu modelo
 def requisicoes_post_save(sender, instance, created, **kwargs):
     if created:
-        dados = json.loads(instance.retorno['data'])
-        
-        deposito = dados['retorno']['estoques'][0]['estoque']['depositos'][0]['deposito']['nome']
-        sku = dados['retorno']['estoques'][0]['estoque']['codigo']
-        descricao = dados['retorno']['estoques'][0]['estoque']['nome']
-        saldo = dados['retorno']['estoques'][0]['estoque']['estoqueAtual']
-        
-        # Verifica se já existe uma consulta com o depósito e SKU informados
-        consulta, created = Consulta.objects.get_or_create(
-            deposito=deposito,
-            sku=sku,
-            defaults={'descricao': descricao, 'saldo': saldo}
-        )
+        try:
+            dados = json.loads(instance.retorno['data'])
+            
+            deposito = dados['retorno']['estoques'][0]['estoque']['depositos'][0]['deposito']['nome']
+            sku = dados['retorno']['estoques'][0]['estoque']['codigo']
+            descricao = dados['retorno']['estoques'][0]['estoque']['nome']
+            saldo = dados['retorno']['estoques'][0]['estoque']['estoqueAtual']
+            
+            # Verifica se já existe uma consulta com o depósito e SKU informados
+            consulta, created = Consulta.objects.get_or_create(
+                deposito=deposito,
+                sku=sku,
+                defaults={'descricao': descricao, 'saldo': saldo}
+            )
+            print('completou try')
+        except:
+            dados = instance.retorno
+            
+            deposito = dados['retorno']['estoques'][0]['estoque']['depositos'][0]['deposito']['nome']
+            sku = dados['retorno']['estoques'][0]['estoque']['codigo']
+            descricao = dados['retorno']['estoques'][0]['estoque']['nome']
+            saldo = dados['retorno']['estoques'][0]['estoque']['estoqueAtual']
+            
+            # Verifica se já existe uma consulta com o depósito e SKU informados
+            consulta, created = Consulta.objects.get_or_create(
+                deposito=deposito,
+                sku=sku,
+                defaults={'descricao': descricao, 'saldo': saldo}
+            )
+            print('completou except')
 
         # Se a consulta já existia, atualiza o saldo
         if not created:
