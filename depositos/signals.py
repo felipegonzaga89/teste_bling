@@ -15,13 +15,8 @@ def requisicoes_post_save(sender, instance, created, **kwargs):
             sku = dados['retorno']['estoques'][0]['estoque']['codigo']
             descricao = dados['retorno']['estoques'][0]['estoque']['nome']
             saldo = dados['retorno']['estoques'][0]['estoque']['estoqueAtual']
+            print(f'saldo é {saldo}')
             
-            # Verifica se já existe uma consulta com o depósito e SKU informados
-            consulta, created = Consulta.objects.get_or_create(
-                deposito=deposito,
-                sku=sku,
-                defaults={'descricao': descricao, 'saldo': saldo}
-            )
             print('completou try')
         except:
             dados = instance.retorno
@@ -30,19 +25,41 @@ def requisicoes_post_save(sender, instance, created, **kwargs):
             sku = dados['retorno']['estoques'][0]['estoque']['codigo']
             descricao = dados['retorno']['estoques'][0]['estoque']['nome']
             saldo = dados['retorno']['estoques'][0]['estoque']['estoqueAtual']
-            
-            # Verifica se já existe uma consulta com o depósito e SKU informados
-            consulta, created = Consulta.objects.get_or_create(
-                deposito=deposito,
-                sku=sku,
-                defaults={'descricao': descricao, 'saldo': saldo}
-            )
             print('completou except')
-
-        # Se a consulta já existia, atualiza o saldo
-        if not created:
+            
+        try:
+            consulta = Consulta.objects.get(
+                deposito=deposito,
+                descricao=descricao,
+            )
             consulta.saldo = saldo
             consulta.save()
+            print('criou no try de update')
+            
+        except:
+            Consulta.objects.create(
+                deposito=deposito,
+                sku=sku,
+                descricao=descricao,
+                saldo=saldo,
+            )
+            print('criou no except de criacao')
+            
+        # consulta, created = Consulta.objects.get_or_create(
+        #     deposito=deposito,
+        #     sku=sku,
+        #     defaults={'descricao': descricao, 'saldo': saldo}
+        # )
+        
+        # if not created:
+        #     print(f'Atualizando saldo para: {saldo}')
+        #     consulta.saldo = saldo
+        #     consulta.save()
+        #     print(f'id da consulta é {consulta.id}')
+        # else:
+        #     print(f'Criando nova consulta com saldo: {saldo}')
+
+
         
         print(f'Novo objeto criado: {instance}')
     
